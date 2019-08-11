@@ -1,13 +1,19 @@
-version: '3.3'
+version: '3.7'
 
 services:
-   api:
-     build: .
-     #image: profile-parser:latest
-     ports:
-       - "8000:80"
-     restart: always
-     environment:
-       PORT: 80
-volumes:
-    db_data: {}
+  api:
+    build: .
+    #image: profile-parser:latest
+    ports:
+      - "8000:80"
+    restart: always
+    environment:
+      PORT: 80
+      ACCOUNT_KEY: /tmp/service-account.json
+      PROJECT_ID: test-12345
+      CACHE_DIR: /tmp
+      PROFILE_FOLDER: Profiles
+      PROFILE_NAME_LINENO: 3
+      PROFILE_SKILLS_HEADERS: Programming Languages/Technologies;RDBMS / Database servers;Operating Systems;Tools
+    volumes:
+      - "${PWD}/service-account.json:/tmp/service-account.json"

@@ -1,4 +1,3 @@
-import 'module-alias/register';
 import * as express from 'express';
 import { Request, Response, NextFunction } from 'express';
 import config from '@core/config';
@@ -15,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/profiles', async (req, res) => {
   const folders = await driveClient.listFiles({
-    name: 'Profiles',
+    name: config.profile.folder,
     type: DriveFileType.FOLDER,
   });
   const profileFolder = folders[0];
